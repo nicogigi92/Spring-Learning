@@ -28,7 +28,7 @@ public class Room {
     private List<Heater> heaterList;
 
 
-    public Room() {
+    public Room(String name, Double currentTemperature, Double targetTemperature, int floor, List<Window> windowList, List<Heater> heaterList, Long id) {
     }
     public Room(int floor, String name, Double currentTemperature, Double targetTemperature, java.util.List<Window> windowList, java.util.List<Heater> heaterList) {
         this.floor=floor;

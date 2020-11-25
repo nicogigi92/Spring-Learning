@@ -50,4 +50,12 @@ public class Window {
     public void setWindowStatus(WindowStatus windowStatus) {
         this.windowStatus = windowStatus;
     }
+    
+    public Room getRoom(){
+        return this.room;
+    }
+    
+    public void setRoom(Room room) {
+        this.room=room;
+    }
 }

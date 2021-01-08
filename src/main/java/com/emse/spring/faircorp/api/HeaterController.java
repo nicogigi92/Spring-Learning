@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController // (1)
-@RequestMapping("/api/heater") // (2)
+@RequestMapping("/api/heaters") // (2)
 @Transactional // (3)
 public class HeaterController {
 
@@ -48,7 +48,7 @@ public class HeaterController {
         Heater heater = null;
         // On creation id is not defined
         if (dto.getId() == null) {
-            heater = heaterDao.save(new Heater(dto.getName(), dto.getHeaterStatus(), room));
+            heater = heaterDao.save(new Heater(dto.getName(), dto.getPower(), room, dto.getHeaterStatus()));
         }
         else {
             heater = heaterDao.getOne(dto.getId());  // (9)

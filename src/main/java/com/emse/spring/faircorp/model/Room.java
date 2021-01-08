@@ -27,10 +27,10 @@ public class Room {
     @OneToMany(mappedBy="room")
     private List<Heater> heaterList;
 
-
-    public Room(String name, Double currentTemperature, Double targetTemperature, int floor, List<Window> windowList, List<Heater> heaterList, Long id) {
+    public Room() {
     }
-    public Room(int floor, String name, Double currentTemperature, Double targetTemperature, java.util.List<Window> windowList, java.util.List<Heater> heaterList) {
+
+    public Room(int floor, String name, Double temperature, Double currentTemperature) {
         this.floor=floor;
         this.name= name;
         this.currentTemperature=currentTemperature;

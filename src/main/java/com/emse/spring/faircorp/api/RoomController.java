@@ -1,4 +1,4 @@
-/*package com.emse.spring.faircorp.api;
+package com.emse.spring.faircorp.api;
 
 import ch.qos.logback.core.joran.conditional.ThenAction;
 import com.emse.spring.faircorp.dao.RoomDao;
@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController // (1)
 @RequestMapping("/api/rooms") // (2)
 @Transactional // (3)
@@ -41,7 +42,7 @@ public class RoomController {
         return roomDao.findById(id).map(RoomDto::new).orElse(null); // (7)
     }
 
-    @PutMapping(path = "/{id}/switch")
+    @GetMapping(path = "/{id}/switchWindows")
     public RoomDto switchWindows(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
         for (int i=0;i<room.getWindows().size();i++){
@@ -50,7 +51,7 @@ public class RoomController {
         }
         return new RoomDto(room);
     }
-    @PutMapping(path = "/{id}/switch")
+    @GetMapping(path = "/{id}/switchHeaters")
     public RoomDto switchHeater(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
         for (int i=0;i<room.getHeaters().size();i++){
@@ -61,24 +62,17 @@ public class RoomController {
     }
 
 
-    @PostMapping // (8)
-    public WindowDto create(@RequestBody RoomDto dto) {
-        // WindowDto must always contain the window room
-        Room room = roomDao.getOne(dto.getId());
+    @PostMapping
+    public RoomDto create(@RequestBody RoomDto dto) {
 
-        // On creation id is not defined
+        Room room = null;
         if (dto.getId() == null) {
-            room = roomDao.save(new Room(dto.getName(), dto.getCurrentTemperature(), dto.getTargetTemperature(), dto.getFloor(), dto.getWindowList(),dto.getHeaterList(),dto.getId()));
+            room = new Room(dto.getFloor(), dto.getName(), dto.getCurrentTemperature(), dto.getTargetTemperature());
+            roomDao.save(room);
+        } else {
+            room = roomDao.getOne(dto.getId());
         }
-        else {
-            room = roomDao.getOne(dto.getId());  // (9)
-            room.setFloor(dto.getFloor());
-            // tu t'es arreté ici, bon courage bro
-            room.setCurrentTemperature(dto.getCurrentTemperature());
-            room.setTargetTemperature(dto.getTargetTemperature());
-
-        }
-        return new WindowDto(window);
+        return new RoomDto(room);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -87,4 +81,3 @@ public class RoomController {
     }
 }
 
- */

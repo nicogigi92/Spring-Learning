@@ -21,7 +21,7 @@ public class Heater {
     @Enumerated(EnumType.STRING)
     private HeaterStatus heaterStatus;
 
-    public Heater(String name, HeaterStatus heaterStatus, Room room){
+    public Heater(){
     }
 
     public Heater(String name, Long power, Room room, HeaterStatus status) {

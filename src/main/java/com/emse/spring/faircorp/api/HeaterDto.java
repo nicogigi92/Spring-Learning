@@ -9,6 +9,7 @@ public class HeaterDto {
     private HeaterStatus heaterStatus;
     private String roomName;
     private Long roomId;
+    private Long power;
 
     public HeaterDto() {
     }
@@ -17,6 +18,7 @@ public class HeaterDto {
         this.id = heater.getId();
         this.name = heater.getName();
         this.heaterStatus = heater.getHeaterStatus();
+        this.power=heater.getPower();
         this.roomName = heater.getRoom().getName();
         this.roomId = heater.getRoom().getId();
     }
@@ -60,4 +62,6 @@ public class HeaterDto {
     public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
+
+    public Long getPower() {return power;}
 }

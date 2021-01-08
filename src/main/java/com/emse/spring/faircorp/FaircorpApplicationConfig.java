@@ -12,7 +12,7 @@ public class FaircorpApplicationConfig {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                greetingService.greet("wesh gros");
+                greetingService.greet("World");
             }
         };
     }
